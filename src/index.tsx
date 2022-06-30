@@ -64,7 +64,7 @@ export default class Synaps extends React.PureComponent<Props> {
         className={this.props.className}
         src={this.getUrl()}
         style={{ minWidth: 400, minHeight: 687 }}
-        allow='microphone; camera; midi; encrypted-media; usb'
+        allow='microphone; camera; midi; encrypted-media; usb; ethereum'
         allowFullScreen
         frameBorder='none'
       />
