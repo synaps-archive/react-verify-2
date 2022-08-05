@@ -1,9 +1,9 @@
 {
   "name": "@synaps-io/react-verify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Synaps ReactJS SDK",
   "author": "Synaps",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "repository": "Synaps/react-verify",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -24,7 +24,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.0.0 || ^17 || ^18"
   },
   "devDependencies": {
     "@synaps-io/verify.js": "^3.0.7",
