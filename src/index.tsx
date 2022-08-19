@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import * as React from 'react'
 import './styles.css'
 
@@ -22,9 +23,16 @@ const serviceUrl = {
   corporate: 'https://verify-v3.synaps.io'
 }
 export default class Synaps extends React.PureComponent<Props> {
+  ref = React.createRef<HTMLIFrameElement>()
   _listernerMessage = ({ data }: MessageEvent) => {
     if (data.type === 'ready') {
       this.props.onReady && this.props.onReady()
+      if (this.props.onFinish) {
+        this.ref.current?.contentWindow?.postMessage(
+          { type: 'synaps_finish_listened' },
+          '*'
+        )
+      }
     } else if (data.type === 'finish') {
       this.props.onFinish && this.props.onFinish()
     }
@@ -32,6 +40,15 @@ export default class Synaps extends React.PureComponent<Props> {
 
   componentDidMount() {
     window.addEventListener('message', this._listernerMessage)
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (!prevProps.onFinish && !!this.props.onFinish) {
+      this.ref.current?.contentWindow?.postMessage(
+        { type: 'synaps_finish_listened' },
+        '*'
+      )
+    }
   }
 
   componentWillUnmount() {
@@ -61,6 +78,7 @@ export default class Synaps extends React.PureComponent<Props> {
   render() {
     return (
       <iframe
+        ref={this.ref}
         className={this.props.className}
         src={this.getUrl()}
         style={{ minWidth: 400, minHeight: 687 }}

@@ -4,7 +4,7 @@
   "description": "Synaps ReactJS SDK",
   "author": "Synaps",
   "license": "Apache-2.0",
-  "repository": "Synaps/react-verify",
+  "repository": "synaps-io/react-verify",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
