@@ -15,6 +15,7 @@ interface Props {
   color?: Color
   lang?: string
   tier?: number
+  withFinishButton?: boolean
 }
 
 const serviceUrl = {
@@ -39,14 +40,15 @@ export default class Synaps extends React.PureComponent<Props> {
   }
 
   getUrl() {
-    const { sessionId, service, color, lang, tier } = this.props
+    const { sessionId, service, color, lang, tier, withFinishButton } = this.props
     const params = {
       session_id: sessionId,
       service,
       primary_color: color ? color.primary : undefined,
       secondary: color ? color.secondary : undefined,
       lang: lang || 'en',
-      tier: tier || undefined
+      tier: tier || undefined,
+      with_finish_button: withFinishButton,
     }
     return `${serviceUrl[service]}?${Object.keys(params)
       .reduce((acc: string[], key): string[] => {
